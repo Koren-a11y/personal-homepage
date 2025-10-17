@@ -1,0 +1,106 @@
+:root {
+  --bg: #0b0f19;
+  --card: #12172a;
+  --text: #e8ecf1;
+  --muted: #9aa4b2;
+  --link: #7cc0ff;
+  --primary: #5b9dff;
+  --primary-600: #3579e6;
+  --border: #22304a;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell,
+    Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 20% -20%, #1a2442, transparent 70%), var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 0 32px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+h1 { font-size: 40px; margin: 16px 0 8px; }
+h2 { font-size: 24px; margin: 32px 0 12px; }
+h3 { margin: 0 0 8px; }
+
+.tagline { color: var(--muted); margin: 0 0 8px; }
+.bio { color: var(--text); margin: 0 auto 16px; max-width: 52ch; }
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
+.btn.primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  border: 0;
+  color: white;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px 12px;
+}
+.links a { color: var(--link); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+.cards {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 12px;
+}
+.card-link { color: var(--link); text-decoration: none; }
+
+.footer {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+  padding-top: 16px;
+  font-size: 14px;
+}
