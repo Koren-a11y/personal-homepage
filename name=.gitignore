@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# builds
+dist
+
+# editors
+.vscode
+.idea
+
+# system
+.DS_Store
+
+# env
+.env
+.env.*
