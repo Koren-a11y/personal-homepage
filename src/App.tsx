@@ -1,4 +1,5 @@
 import React from 'react'
+import { useI18n } from './i18n'
 
 type Link = { name: string; url: string; placeholder?: boolean }
 
@@ -15,94 +16,111 @@ const skills = {
   soft: ['跨团队沟通', 'Mentoring', '产品思维', 'UX 敏感度'],
 }
 
-const projects = [
+type Project = {
+  titleKey: string
+  timeKey: string
+  contextKey: string
+  roleKey: string
+  whatKey: string
+  impactKey: string
+  link: string
+}
+
+const projects: Project[] = [
   {
-    title: '冷启动优化 — CompanyX',
-    time: '2023 Q2',
-    context: 'DAU 50k，首次体验中因冷启动慢流失 12%。',
-    role: 'iOS 核心工程师，负责重构与性能优化设计和落地。',
-    what: ['拆分启动路径并延后初始化次要模块', '按需加载与资源压缩', '优化图片加载与缓存'],
-    impact: '冷启动 2.8s → 1.6s，首日留存 +6%，投诉 -40%。',
+    titleKey: 'p1.title',
+    timeKey: 'p1.time',
+    contextKey: 'p1.context',
+    roleKey: 'p1.role',
+    whatKey: 'p1.what',
+    impactKey: 'p1.impact',
     link: '#',
   },
   {
-    title: '企业支付 SDK 模块化',
-    time: '2022',
-    context: 'B 端客户多集成场景，功能膨胀导致维护困难。',
-    role: '移动端负责人，主导模块化与 API 设计。',
-    what: ['模块边界重构', '版本发布规范与示例 App', '对接 10+ 客户'],
-    impact: '集成工时 -35%，回归缺陷 -28%。',
+    titleKey: 'p2.title',
+    timeKey: 'p2.time',
+    contextKey: 'p2.context',
+    roleKey: 'p2.role',
+    whatKey: 'p2.what',
+    impactKey: 'p2.impact',
     link: '#',
   },
   {
-    title: 'Flutter 多语言重构',
-    time: '2021',
-    context: '多市场发行，多处硬编码文案导致迭代阻塞。',
-    role: '核心开发者，推动 i18n 资产化。',
-    what: ['抽离文案资源与 Key 规范', '代码复用与脚手架', 'CI 校验缺失 key'],
-    impact: '重复代码 -60%，发布频率提升。',
+    titleKey: 'p3.title',
+    timeKey: 'p3.time',
+    contextKey: 'p3.context',
+    roleKey: 'p3.role',
+    whatKey: 'p3.what',
+    impactKey: 'p3.impact',
     link: '#',
   },
 ]
 
 export default function App() {
+  const { t, locale, setLocale } = useI18n()
   return (
     <main className="container">
       {/* Hero */}
       <section className="hero">
         <img className="avatar" src="https://github.com/Koren-a11y.png" alt="Koren 的头像" />
-        <h1>iOS / Flutter 开发者 · 产品导向</h1>
-        <p className="tagline">真诚、爱探索，热爱日式美学与空间改造；在国际化公司做过核心工程，能把复杂产品模块化并落地。</p>
-        <p className="bio">这个站点使用 Vite + React + TypeScript 构建，并通过 GitHub Actions 部署到 GitHub Pages。</p>
+        <h1>{t('hero.h1')}</h1>
+        <p className="tagline">{t('hero.tagline')}</p>
+        <p className="bio">{t('hero.bio')}</p>
         <div className="actions">
-          <a className="btn primary" href="#contact">联系我</a>
-          <a className="btn" href="#projects">查看项目</a>
-          <a className="btn" href="https://github.com/Koren-a11y/personal-homepage" target="_blank" rel="noreferrer">查看源码</a>
+          <a className="btn primary" href="#contact">{t('actions.contact')}</a>
+          <a className="btn" href="#projects">{t('actions.view_projects')}</a>
+          <a className="btn" href="https://github.com/Koren-a11y/personal-homepage" target="_blank" rel="noreferrer">{t('actions.view_source')}</a>
+        </div>
+        <div className="actions" aria-label="language switcher">
+          <button className="btn" onClick={() => setLocale('ja')} aria-pressed={locale==='ja'}>日本語</button>
+          <button className="btn" onClick={() => setLocale('zh')} aria-pressed={locale==='zh'}>中文</button>
+          <button className="btn" onClick={() => setLocale('en')} aria-pressed={locale==='en'}>EN</button>
         </div>
       </section>
 
-      {/* Masonry feed */}
-      <h2 className="section-heading" id="about">关于我 · About</h2>
+  {/* Masonry feed */}
+  <h2 className="section-heading" id="about">{t('section.about')}</h2>
       <div className="masonry" aria-live="polite">
         {/* About */}
         <article className="masonry-item">
           <div className="masonry-card prose" role="region" aria-labelledby="about-title">
             <div className="eyebrow">Profile</div>
-            <h3 id="about-title" className="card-title">我是谁</h3>
-            <p>我是一个喜欢探索的人：写代码、长途骑行、也会亲手做空间改造。作为核心员工参与过跨国项目，从 0 到 1 以及后续规模化迭代。</p>
-            <p>我注重美学与体验，偏好留白与细节；在工程上追求可维护与可验证。</p>
+            <h3 id="about-title" className="card-title">{t('about.title')}</h3>
+            <p>{t('about.p1')}</p>
+            <p>{t('about.p2')}</p>
           </div>
         </article>
 
         {/* Skills */}
         <article className="masonry-item">
           <div className="masonry-card prose" role="region" aria-labelledby="skills-title">
-            <div className="eyebrow">Skills</div>
-            <h3 id="skills-title" className="card-title">技能速览</h3>
+            <div className="eyebrow">{t('section.skills')}</div>
+            <h3 id="skills-title" className="card-title">{t('skills.title')}</h3>
             <ul>
-              <li>Mobile：{skills.mobile.join(', ')}</li>
-              <li>Architecture：{skills.arch.join(', ')}</li>
-              <li>Infra & Tools：{skills.tools.join(', ')}</li>
-              <li>Soft skills：{skills.soft.join(', ')}</li>
+              <li>{t('skills.mobile')}：{skills.mobile.join(', ')}</li>
+              <li>{t('skills.arch')}：{skills.arch.join(', ')}</li>
+              <li>{t('skills.tools')}：{skills.tools.join(', ')}</li>
+              <li>{t('skills.soft')}：{skills.soft.join(', ')}</li>
             </ul>
           </div>
         </article>
 
         {/* Projects */}
+        <h2 className="section-heading" id="projects">{t('projects.eyebrow')}</h2>
         {projects.map((p) => (
-          <article className="masonry-item" key={p.title}>
-            <div className="masonry-card prose" role="region" aria-labelledby={`${p.title}-id`}>
-              <div className="eyebrow">Project Case</div>
-              <h3 id={`${p.title}-id`} className="card-title">{p.title}</h3>
-              <div className="card-meta">{p.time}</div>
+          <article className="masonry-item" key={p.titleKey}>
+            <div className="masonry-card prose" role="region" aria-labelledby={`${p.titleKey}-id`}>
+              <div className="eyebrow">{t('projects.eyebrow')}</div>
+              <h3 id={`${p.titleKey}-id`} className="card-title">{t(p.titleKey)}</h3>
+              <div className="card-meta">{t(p.timeKey)}</div>
               <ul>
-                <li><strong>背景：</strong>{p.context}</li>
-                <li><strong>角色：</strong>{p.role}</li>
-                <li><strong>方法：</strong>{p.what.join(' / ')}</li>
-                <li><strong>结果：</strong>{p.impact}</li>
+                <li><strong>背景：</strong>{t(p.contextKey)}</li>
+                <li><strong>角色：</strong>{t(p.roleKey)}</li>
+                <li><strong>方法：</strong>{t(p.whatKey)}</li>
+                <li><strong>结果：</strong>{t(p.impactKey)}</li>
               </ul>
               <div className="card-actions">
-                <a className="btn" href={p.link} aria-label={`${p.title} 详情`}>详情 / Links</a>
+                <a className="btn" href={p.link} aria-label={`${t(p.titleKey)} details`}>{t('projects.details')}</a>
               </div>
             </div>
           </article>
@@ -111,13 +129,13 @@ export default function App() {
         {/* Aesthetics & Hobbies */}
         <article className="masonry-item">
           <div className="masonry-card prose" role="region" aria-labelledby="hobby-title">
-            <div className="eyebrow">Hobby · Value</div>
-            <h3 id="hobby-title" className="card-title">骑行与美学</h3>
-            <p>骑行带给我耐力与专注，帮助我在长期项目中稳步推进；对日本建筑与空间的偏好，让我在工程中也注重材质感与光影般的细节。</p>
+            <div className="eyebrow">{t('hobby.eyebrow')}</div>
+            <h3 id="hobby-title" className="card-title">{t('hobby.title')}</h3>
+            <p>{t('hobby.p')}</p>
             <ul>
-              <li>长途骑行：强调耐力与自我管理</li>
-              <li>空间改造：从 0 到 1 的动手与落地能力</li>
-              <li>审美偏好：低饱和度、留白、克制的动效</li>
+              <li>{t('hobby.li1')}</li>
+              <li>{t('hobby.li2')}</li>
+              <li>{t('hobby.li3')}</li>
             </ul>
           </div>
         </article>
@@ -126,8 +144,8 @@ export default function App() {
         <article className="masonry-item">
           <div className="masonry-card prose" role="region" aria-labelledby="exp-title">
             <div className="eyebrow">Experience</div>
-            <h3 id="exp-title" className="card-title">经历与角色</h3>
-            <p>在一些国际化大公司担任核心员工，参与重要项目；偏好在不明确阶段将技术方案变成可评估的 MVP，从而推动产品决策。</p>
+            <h3 id="exp-title" className="card-title">{t('exp.title')}</h3>
+            <p>{t('exp.p')}</p>
           </div>
         </article>
 
@@ -135,10 +153,10 @@ export default function App() {
         <article className="masonry-item">
           <div className="masonry-card prose" role="region" aria-labelledby="links-title">
             <div className="eyebrow">Links</div>
-            <h3 id="links-title" className="card-title">社交与资料</h3>
+            <h3 id="links-title" className="card-title">{t('links.title')}</h3>
             <ul>
               {socials.map(s => (
-                <li key={s.name}><a href={s.url} target="_blank" rel="noreferrer">{s.name}{s.placeholder ? '（更新中）' : ''}</a></li>
+                <li key={s.name}><a href={s.url} target="_blank" rel="noreferrer">{s.name}{s.placeholder ? t('links.placeholder') : ''}</a></li>
               ))}
             </ul>
           </div>
@@ -147,19 +165,19 @@ export default function App() {
         {/* CTA */}
         <article className="masonry-item" id="contact">
           <div className="masonry-card prose" role="region" aria-labelledby="cta-title">
-            <div className="eyebrow">Contact</div>
-            <h3 id="cta-title" className="card-title">我在寻找</h3>
-            <p>开放全职 / 远程 / 面向产品决策的移动工程岗位。若你正在寻找能将复杂需求变简单、并能稳定推进项目落地的人，欢迎联系我。</p>
+            <div className="eyebrow">{t('section.contact')}</div>
+            <h3 id="cta-title" className="card-title">{t('cta.title')}</h3>
+            <p>{t('cta.p')}</p>
             <div className="card-actions">
-              <a className="btn primary" href="mailto:you@example.com">邮件联系</a>
-              <a className="btn" href="/Koren-a11y-CV.pdf" target="_blank" rel="noreferrer">下载简历</a>
+              <a className="btn primary" href="mailto:you@example.com">{t('cta.email')}</a>
+              <a className="btn" href="/Koren-a11y-CV.pdf" target="_blank" rel="noreferrer">{t('cta.cv')}</a>
             </div>
           </div>
         </article>
       </div>
 
       <footer className="footer" role="contentinfo">
-        <p>© {new Date().getFullYear()} Koren · 发布于 GitHub Pages</p>
+        <p>{t('footer', { year: new Date().getFullYear() })}</p>
       </footer>
     </main>
   )
