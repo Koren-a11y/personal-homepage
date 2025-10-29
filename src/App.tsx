@@ -12,6 +12,8 @@ const socials: Link[] = [
 type CareerItem = {
   company: string
   logoUrl: string
+  productIconUrl: string
+  productUrl?: string
   time: string
   location: string
   projects: { title: string; points: string[] }[]
@@ -19,23 +21,98 @@ type CareerItem = {
 
 const career: CareerItem[] = [
   {
-    company: 'Company 新',
-    logoUrl: '/logos/company-new.png',
-    time: '2024 – 今',
-    location: 'Tokyo, JP',
+    company: 'Smart We 株式会社',
+    logoUrl: '/logos/smartwe.png',
+    productIconUrl: '/logos/selfcheckout.png',
+    productUrl: '',
+    time: '2023年11月 ~ 現在',
+    location: '—',
     projects: [
-      { title: '代表项目 A', points: ['负责移动端核心模块', '性能优化与架构重构', '跨团队协作推进落地'] },
-    ],
+      {
+        title: 'セルフレジアプリの開発 (Flutter)',
+        points: [
+          'アーキテクチャ構築およびデータ型の定義',
+          'ネットワークユーティリティ・データベースの実装',
+          '複数モードのUIと機能のワンタッチ切替',
+          'POSレジ/現金機/プリンターとの通信コンポーネント実装',
+          'Firebase 分析機能の導入'
+        ]
+      }
+    ]
   },
   {
-    company: 'Company B',
-    logoUrl: '/logos/company-b.png',
-    time: '2022 – 2024',
-    location: 'Shanghai, CN',
+    company: '一賢株式会社',
+    logoUrl: '/logos/ikken.png',
+    productIconUrl: '/logos/selfcheckout.png',
+    productUrl: '',
+    time: '2023年1月 ~ 2023年9月',
+    location: '—',
     projects: [
-      { title: '支付 SDK 模块化', points: ['模块边界设计', 'API 规范与示例 App', '10+ 客户对接'] },
-    ],
+      {
+        title: '物流業界の位置管理システムの開発',
+        points: [
+          '企画・設計・開発・テスト・デプロイまで一貫対応',
+          'Jenkins と Docker を用いたデプロイメントフロー構築',
+          'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
+          '顧客フィードバックに基づく継続的な改善'
+        ]
+      }
+    ]
   },
+  {
+    company: 'LEDVANCE',
+    logoUrl: '/logos/ledvance.png',
+    productIconUrl: '/logos/selfcheckout.png',
+    productUrl: 'https://apps.apple.com/jp/app/ledvance-smart-plus-pro/id1642677893?l=en-US',
+    time: '2021年7月 ~ 2022年12月',
+    location: '—',
+    projects: [
+      {
+        title: 'Ledvance Smart plus pro アプリ',
+        points: [
+          'アーキテクチャ設計とデータ構造定義、機能実装・テスト',
+          'Flutter でユーザー管理モジュール、React Native でデバイスパネルを実装',
+          '拡張可能で保守容易な構造を実現、ハードウェア連携で体験と売上を向上'
+        ]
+      }
+    ]
+  },
+  {
+    company: 'HARMAN',
+    logoUrl: '/logos/harman.png',
+    productIconUrl: '/logos/selfcheckout.png',
+    productUrl: 'https://jp.jbl.com/app.html',
+    time: '2017年11月 ~ 2021年7月',
+    location: '—',
+    projects: [
+      {
+        title: 'JBL Headphones アプリ',
+        points: [
+          'アーキテクチャ設計、機能実装、App Store 配信と保守',
+          'Firebase データ収集、AWS を用いたメッセージプッシュ、Jenkins でリリースフロー構築',
+          'グローバルユーザー評価 4.5、iF Design 賞 受賞'
+        ]
+      }
+    ]
+  },
+  {
+    company: 'TCL Group',
+    logoUrl: '/logos/tcl.png',
+    productIconUrl: '/logos/selfcheckout.png',
+    productUrl: '',
+    time: '2014年7月 ~ 2017年9月',
+    location: '—',
+    projects: [
+      {
+        title: 'TCL Telcom iOS アプリ',
+        points: [
+          '家電製品を管理・設定するスマートホームアプリの開発',
+          'プログラム実装、保守、顧客対応、トラブルシュート',
+          '同社初の IoT アプリを実現し、iOS 開発スキルを確立'
+        ]
+      }
+    ]
+  }
 ]
 
 type Interest = { titleKey: string; descKey: string; emoji: string }
@@ -121,10 +198,31 @@ export default function App() {
               <div className="timeline-right">
                 {item.projects.map((p, i) => (
                   <div className="timeline-card" key={i}>
-                    <h3 className="card-title">{p.title}</h3>
-                    <ul>
-                      {p.points.map((pt, j) => (<li key={j}>{pt}</li>))}
-                    </ul>
+                    <div className="timeline-card-grid">
+                      <div className="timeline-card-body">
+                        <h3 className="card-title">{p.title}</h3>
+                        <ul>
+                          {p.points.map((pt, j) => (<li key={j}>{pt}</li>))}
+                        </ul>
+                      </div>
+                      <div className="timeline-card-media" aria-hidden={false}>
+                        {item.productUrl ? (
+                          <a
+                            href={item.productUrl}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="media-link"
+                            aria-label={`${item.company} ${p.title} リンク`}
+                          >
+                            <img src={item.productIconUrl} loading="lazy" alt={`${item.company} ${p.title} icon`} />
+                          </a>
+                        ) : (
+                          <span className="media-link is-disabled" aria-disabled="true" title={t('links.placeholder')}>
+                            <img src={item.productIconUrl} loading="lazy" alt={`${item.company} ${p.title} icon`} />
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
