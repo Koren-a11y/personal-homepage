@@ -147,13 +147,17 @@ export default function App() {
       {/* Hero (unchanged basic info) */}
       <section className="hero">
         <img className="avatar" src="https://github.com/Koren-a11y.png" alt="Koren 的头像" />
+        <h3>{'HOU JINGYAN'}</h3>
+
         <h1>{t('hero.h1')}</h1>
         <p className="tagline">{t('hero.tagline')}</p>
         {/* <p className="bio">{t('hero.bio')}</p> */}
         <div className="actions">
-          <a className="btn primary" href="#contact">{t('actions.contact')}</a>
-          <a className="btn" href="#career">{t('actions.view_projects')}</a>
-          <a className="btn" href="https://github.com/Koren-a11y/personal-homepage" target="_blank" rel="noreferrer">{t('actions.view_source')}</a>
+          <a className="btn primary" href="mailto:projectyoutobe@gmail.com">
+            {t('actions.contact')}
+          </a>
+          {/* <a className="btn" href="#career">{t('actions.view_projects')}</a> */}
+          {/* <a className="btn" href="https://github.com/Koren-a11y/personal-homepage" target="_blank" rel="noreferrer">{t('actions.view_source')}</a> */}
         </div>
         <div className="actions" aria-label="language switcher">
           <button className="btn" onClick={() => setLocale('ja')} aria-pressed={locale==='ja'}>日本語</button>
