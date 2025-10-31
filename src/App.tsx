@@ -138,11 +138,11 @@ export default function App() {
   return (
     <main className="container">
       {/* Background gallery (decorative) */}
-      <div className="bg-gallery" aria-hidden="true">
+      {/* <div className="bg-gallery" aria-hidden="true">
         <div className="bg-photo bg-photo-1" />
         <div className="bg-photo bg-photo-2" />
         <div className="bg-photo bg-photo-3" />
-      </div>
+      </div> */}
 
       {/* Hero (unchanged basic info) */}
       <section className="hero">

@@ -15,14 +15,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0b0f19;
-    --card: #12172a;
+    --card: #12172a; /*12172a*/
     --text: #e8ecf1;
-    --muted: #9aa4b2;
+    --muted: #9aa4b2; /*9aa4b2*/
     --link: #7cc0ff;
     --primary: #5b9dff;
     --primary-600: #3579e6;
     --border: #22304a;
     --shadow: 0 10px 30px rgba(0,0,0,.3);
+    --card-alpha: rgba(18, 23, 42, 0.6);
   }
 }
 
