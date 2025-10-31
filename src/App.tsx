@@ -34,9 +34,9 @@ const career: CareerItem[] = [
   {
     company: 'Smart We 株式会社',
     logoUrl: 'logos/smartwe.png',
-    productIconUrl: 'logos/selfcheckout.png',
-    productUrl: '',
-    time: '2023年11月 ~ 現在',
+    productIconUrl: 'logos/smartwe.product.png',
+    productUrl: 'https://smartwe.co.jp/',
+    time: '2023年11月 \n~ 現在',
     location: '—',
     projects: [
       {
@@ -51,31 +51,31 @@ const career: CareerItem[] = [
       }
     ]
   },
-  // {
-  //   company: '一賢株式会社',
-  //   logoUrl: 'logos/ikken.png',
-  //   productIconUrl: 'logos/selfcheckout.png',
-  //   productUrl: '',
-  //   time: '2023年1月 ~ 2023年9月',
-  //   location: '—',
-  //   projects: [
-  //     {
-  //       title: '物流業界の位置管理システムの開発',
-  //       points: [
-  //         '企画・設計・開発・テスト・デプロイまで一貫対応',
-  //         'Jenkins と Docker を用いたデプロイメントフロー構築',
-  //         'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
-  //         '顧客フィードバックに基づく継続的な改善'
-  //       ]
-  //     }
-  //   ]
-  // },
+  {
+    company: '一賢株式会社',
+    logoUrl: 'logos/ikken.png',
+    productIconUrl: 'logos/ikken.product.png',
+    productUrl: '',
+    time: '2023年1月 \n~ 2023年9月',
+    location: '—',
+    projects: [
+      {
+        title: '屋内位置管理システム',
+        points: [
+          '企画・設計・開発・テスト・デプロイまで一貫対応',
+          'Jenkins と Docker を用いたデプロイメントフロー構築',
+          'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
+          '顧客フィードバックに基づく継続的な改善'
+        ]
+      }
+    ]
+  },
   {
     company: 'LEDVANCE',
     logoUrl: 'logos/ledvance.png',
-    productIconUrl: 'logos/selfcheckout.png',
+    productIconUrl: 'logos/ledvance.product.png',
     productUrl: 'https://apps.apple.com/jp/app/ledvance-smart-plus-pro/id1642677893?l=en-US',
-    time: '2021年7月 ~ 2022年12月',
+    time: '2021年7月 \n~ 2022年12月',
     location: '—',
     projects: [
       {
@@ -91,9 +91,9 @@ const career: CareerItem[] = [
   {
     company: 'HARMAN',
     logoUrl: 'logos/harman.png',
-    productIconUrl: 'logos/selfcheckout.png',
+    productIconUrl: 'logos/harman.product.png',
     productUrl: 'https://jp.jbl.com/app.html',
-    time: '2017年11月 ~ 2021年7月',
+    time: '2017年11月 \n~ 2021年7月',
     location: '—',
     projects: [
       {
@@ -109,9 +109,9 @@ const career: CareerItem[] = [
   {
     company: 'TCL Group',
     logoUrl: 'logos/tcl.png',
-    productIconUrl: 'logos/selfcheckout.png',
+    productIconUrl: 'logos/tcl.product.png',
     productUrl: '',
-    time: '2014年7月 ~ 2017年9月',
+    time: '2014年7月 \n~ 2017年9月',
     location: '—',
     projects: [
       {
@@ -149,7 +149,7 @@ export default function App() {
         <img className="avatar" src="https://github.com/Koren-a11y.png" alt="Koren 的头像" />
         <h1>{t('hero.h1')}</h1>
         <p className="tagline">{t('hero.tagline')}</p>
-        <p className="bio">{t('hero.bio')}</p>
+        {/* <p className="bio">{t('hero.bio')}</p> */}
         <div className="actions">
           <a className="btn primary" href="#contact">{t('actions.contact')}</a>
           <a className="btn" href="#career">{t('actions.view_projects')}</a>
@@ -167,25 +167,37 @@ export default function App() {
         <h2 id="traits-title" className="section-heading">{t('traits.title')}</h2>
         <div className="traits-grid">
           <article className="feature-card" aria-label={t('traits.engineer')}>
-            <div className="feature-image placeholder" data-label={t('traits.engineer')} />
             <div className="feature-body">
               <h3 className="card-title">{t('traits.engineer')}</h3>
               <p className="muted">{t('traits.engineer.desc')}</p>
             </div>
+            {(() => { const src = logoAsset('logos/me.engineer.png'); return src ? (
+              <div className="feature-image"><img src={src} alt={t('traits.engineer')} style={{width:'100%',height:'100%',objectFit:'cover'}} loading="lazy" /></div>
+            ) : (
+              <div className="feature-image placeholder" data-label={t('traits.engineer')} />
+            )})()}
           </article>
           <article className="feature-card" aria-label={t('traits.values')}>
-            <div className="feature-image placeholder" data-label={t('traits.values')} />
             <div className="feature-body">
               <h3 className="card-title">{t('traits.values')}</h3>
               <p className="muted">{t('traits.values.desc')}</p>
             </div>
+            {(() => { const src = logoAsset('logos/me.frendly.png'); return src ? (
+              <div className="feature-image"><img src={src} alt={t('traits.values')} style={{width:'100%',height:'100%',objectFit:'cover'}} loading="lazy" /></div>
+            ) : (
+              <div className="feature-image placeholder" data-label={t('traits.values')} />
+            )})()}
           </article>
           <article className="feature-card" aria-label={t('traits.sport')}>
-            <div className="feature-image placeholder" data-label={t('traits.sport')} />
             <div className="feature-body">
               <h3 className="card-title">{t('traits.sport')}</h3>
               <p className="muted">{t('traits.sport.desc')}</p>
             </div>
+            {(() => { const src = logoAsset('logos/me.advanture.png'); return src ? (
+              <div className="feature-image"><img src={src} alt={t('traits.sport')} style={{width:'100%',height:'100%',objectFit:'cover'}} loading="lazy" /></div>
+            ) : (
+              <div className="feature-image placeholder" data-label={t('traits.sport')} />
+            )})()}
           </article>
         </div>
       </section>

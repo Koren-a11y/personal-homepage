@@ -224,17 +224,18 @@ h3 { margin: 0 0 8px; }
 .timeline-item { display: grid; grid-template-columns: 220px 1fr; gap: 20px; position: relative; padding: 18px 0; }
 .timeline-item::before { content: ''; position: absolute; left: 200px; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; top: 28px; transform: translate(-4px, -4px); }
 .timeline-left { display: flex; gap: 12px; align-items: center; }
-.logo-wrap { width: 56px; height: 56px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); display: grid; place-items: center; }
-.company-logo { width: 100%; height: 100%; object-fit: contain; }
+.logo-wrap { width: 68px; height: 68px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--card); display: grid; place-items: center; }
+.company-logo { width: 100%; height: 100%; object-fit: contain; display: block; }
 .company-meta { font-size: 14px; }
 .company-name { font-weight: 600; }
 .company-time, .company-location { color: var(--muted); }
+.company-time { white-space: pre-line; }
 .timeline-right { display: grid; gap: 12px; }
 .timeline-card { background: var(--card-alpha); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; backdrop-filter: blur(6px); }
 .timeline-card-grid { display: grid; grid-template-columns: 1fr minmax(160px, 50%); gap: 12px; align-items: center; }
 .timeline-card-body { min-width: 0; }
-.timeline-card-media { width: 100%; height: 160px; display: grid; place-items: center; background: var(--card); border: 1px dashed var(--border); border-radius: 10px; }
-.timeline-card-media img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.timeline-card-media { width: 100%; height: 192px; display: grid; place-items: center; background: var(--card); border-radius: 12px; overflow: hidden; }
+.timeline-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .media-link { display: block; width: 100%; height: 100%; }
 .media-link.is-disabled { cursor: default; opacity: .9; }
 
@@ -244,7 +245,7 @@ h3 { margin: 0 0 8px; }
   .timeline-item::before { left: 24px; }
   .timeline-left { align-items: flex-start; }
   .timeline-card-grid { grid-template-columns: 1fr; }
-  .timeline-card-media { height: 140px; }
+  .timeline-card-media { height: 168px; }
 }
 
 /* Interests */
