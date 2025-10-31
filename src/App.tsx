@@ -19,11 +19,22 @@ type CareerItem = {
   projects: { title: string; points: string[] }[]
 }
 
+// Helper to resolve assets under Vite base (e.g., /personal-homepage/ on GitHub Pages)
+// If images are under public/, prefer using BASE_URL helper above.
+// For images under src/logos/, use Vite's import.meta.glob to bundle them and return URLs at runtime.
+// Note: Vite v5 deprecates `as: 'url'`; use `query: '?url'` with `import: 'default'` instead.
+const logoMap = import.meta.glob('./logos/*', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+const logoAsset = (path: string) => {
+  // Accept values like 'logos/foo.png' or './logos/foo.png'
+  const normalized = path.startsWith('./') ? path : `./${path}`
+  return logoMap[normalized] || logoMap[`./logos/${path.replace(/^logos\/?/, '')}`] || path
+}
+
 const career: CareerItem[] = [
   {
     company: 'Smart We 株式会社',
-    logoUrl: '/logos/smartwe.png',
-    productIconUrl: '/logos/selfcheckout.png',
+    logoUrl: 'logos/smartwe.png',
+    productIconUrl: 'logos/selfcheckout.png',
     productUrl: '',
     time: '2023年11月 ~ 現在',
     location: '—',
@@ -40,29 +51,29 @@ const career: CareerItem[] = [
       }
     ]
   },
-  {
-    company: '一賢株式会社',
-    logoUrl: '/logos/ikken.png',
-    productIconUrl: '/logos/selfcheckout.png',
-    productUrl: '',
-    time: '2023年1月 ~ 2023年9月',
-    location: '—',
-    projects: [
-      {
-        title: '物流業界の位置管理システムの開発',
-        points: [
-          '企画・設計・開発・テスト・デプロイまで一貫対応',
-          'Jenkins と Docker を用いたデプロイメントフロー構築',
-          'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
-          '顧客フィードバックに基づく継続的な改善'
-        ]
-      }
-    ]
-  },
+  // {
+  //   company: '一賢株式会社',
+  //   logoUrl: 'logos/ikken.png',
+  //   productIconUrl: 'logos/selfcheckout.png',
+  //   productUrl: '',
+  //   time: '2023年1月 ~ 2023年9月',
+  //   location: '—',
+  //   projects: [
+  //     {
+  //       title: '物流業界の位置管理システムの開発',
+  //       points: [
+  //         '企画・設計・開発・テスト・デプロイまで一貫対応',
+  //         'Jenkins と Docker を用いたデプロイメントフロー構築',
+  //         'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
+  //         '顧客フィードバックに基づく継続的な改善'
+  //       ]
+  //     }
+  //   ]
+  // },
   {
     company: 'LEDVANCE',
-    logoUrl: '/logos/ledvance.png',
-    productIconUrl: '/logos/selfcheckout.png',
+    logoUrl: 'logos/ledvance.png',
+    productIconUrl: 'logos/selfcheckout.png',
     productUrl: 'https://apps.apple.com/jp/app/ledvance-smart-plus-pro/id1642677893?l=en-US',
     time: '2021年7月 ~ 2022年12月',
     location: '—',
@@ -79,8 +90,8 @@ const career: CareerItem[] = [
   },
   {
     company: 'HARMAN',
-    logoUrl: '/logos/harman.png',
-    productIconUrl: '/logos/selfcheckout.png',
+    logoUrl: 'logos/harman.png',
+    productIconUrl: 'logos/selfcheckout.png',
     productUrl: 'https://jp.jbl.com/app.html',
     time: '2017年11月 ~ 2021年7月',
     location: '—',
@@ -97,8 +108,8 @@ const career: CareerItem[] = [
   },
   {
     company: 'TCL Group',
-    logoUrl: '/logos/tcl.png',
-    productIconUrl: '/logos/selfcheckout.png',
+    logoUrl: 'logos/tcl.png',
+    productIconUrl: 'logos/selfcheckout.png',
     productUrl: '',
     time: '2014年7月 ~ 2017年9月',
     location: '—',
@@ -187,7 +198,7 @@ export default function App() {
             <li className="timeline-item" key={item.company + idx}>
               <div className="timeline-left">
                 <div className="logo-wrap">
-                  <img className="company-logo" src={item.logoUrl} alt={item.company + ' logo'} />
+                  <img className="company-logo" src={logoAsset(item.logoUrl)} alt={item.company + ' logo'} />
                 </div>
                 <div className="company-meta">
                   <div className="company-name">{item.company}</div>
@@ -214,11 +225,11 @@ export default function App() {
                             className="media-link"
                             aria-label={`${item.company} ${p.title} リンク`}
                           >
-                            <img src={item.productIconUrl} loading="lazy" alt={`${item.company} ${p.title} icon`} />
+                            <img src={logoAsset(item.productIconUrl)} loading="lazy" alt={`${item.company} ${p.title} icon`} />
                           </a>
                         ) : (
                           <span className="media-link is-disabled" aria-disabled="true" title={t('links.placeholder')}>
-                            <img src={item.productIconUrl} loading="lazy" alt={`${item.company} ${p.title} icon`} />
+                            <img src={logoAsset(item.productIconUrl)} loading="lazy" alt={`${item.company} ${p.title} icon`} />
                           </span>
                         )}
                       </div>

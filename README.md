@@ -44,6 +44,12 @@ npm run preview
 - 文案：尽量用“问题→方法→结果”的结构表达影响；能量化就量化。
 - 可访问性：保证卡片标题唯一、按钮有可见焦点、颜色对比达标；当前已提供基础语义结构。
 
+### 图片资源放置与路径（GitHub Pages 基础路径适配）
+- 放在 public：将图片放入 `public/logos/`，在数据里写 `"logos/xxx.png"`，运行时会自动带上 `vite.config.ts` 里的 `base`（例如 `/personal-homepage/`）。
+- 放在 src：将图片放入 `src/logos/`，同样在数据里写 `"logos/xxx.png"`。项目已使用 `import.meta.glob` 进行打包映射，运行时会得到正确的 URL。
+- 注意大小写：文件名区分大小写；新增 public 资源后请重新构建。
+- 预览与部署：使用 `npm run preview` 访问的路径通常为 `http://localhost:4173/personal-homepage/`（包含 base 前缀）；GitHub Pages 访问形如 `https://<username>.github.io/personal-homepage/`。
+
 ## 待办建议（可选）
 - [ ] 国际化：提供英文版 /en（或开关）。
 - [ ] 项目截图与动图：增加关键交互演示。
