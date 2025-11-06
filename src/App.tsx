@@ -10,6 +10,7 @@ const socials: Link[] = [
 ]
 
 type CareerItem = {
+  key: 'smartwe' | 'ikken' | 'ledvance' | 'harman' | 'tcl'
   company: string
   logoUrl: string
   productIconUrl: string
@@ -32,6 +33,7 @@ const logoAsset = (path: string) => {
 
 const career: CareerItem[] = [
   {
+    key: 'smartwe',
     company: 'Smart We 株式会社',
     logoUrl: 'logos/smartwe.png',
     productIconUrl: 'logos/smartwe.product.png',
@@ -40,18 +42,18 @@ const career: CareerItem[] = [
     location: '—',
     projects: [
       {
-        title: 'セルフレジアプリの開発 (Flutter)',
+        title: '自助收银与点餐系统 (Flutter/iOS)',
         points: [
-          'アーキテクチャ構築およびデータ型の定義',
-          'ネットワークユーティリティ・データベースの実装',
-          '複数モードのUIと機能のワンタッチ切替',
-          'POSレジ/現金機/プリンターとの通信コンポーネント実装',
-          'Firebase 分析機能の導入'
+          '技术组长，统筹App架构设计与开发进度',
+          '多领域担当，产品需求设计，UI/UX 设计，程序实现，测试与发布',
+          '复杂功能，高质量实现',
+          '多种设备和外设的集成与通信',
         ]
       }
     ]
   },
   {
+    key: 'ikken',
     company: '一賢株式会社',
     logoUrl: 'logos/ikken.png',
     productIconUrl: 'logos/ikken.product.png',
@@ -60,17 +62,16 @@ const career: CareerItem[] = [
     location: '—',
     projects: [
       {
-        title: '屋内位置管理システム',
+        title: '室内定位系统',
         points: [
-          '企画・設計・開発・テスト・デプロイまで一貫対応',
-          'Jenkins と Docker を用いたデプロイメントフロー構築',
-          'AWS テストサーバー設定、Redis / RabbitMQ による機能改善',
-          '顧客フィードバックに基づく継続的な改善'
+          '首次担任项目经理',
+          '极具挑战的项目',
         ]
       }
     ]
   },
   {
+    key: 'ledvance',
     company: 'LEDVANCE',
     logoUrl: 'logos/ledvance.png',
     productIconUrl: 'logos/ledvance.product.png',
@@ -79,16 +80,18 @@ const career: CareerItem[] = [
     location: '—',
     projects: [
       {
-        title: 'Ledvance Smart plus pro アプリ',
+        title: 'Ledvance 智能照明应用',
         points: [
-          'アーキテクチャ設計とデータ構造定義、機能実装・テスト',
-          'Flutter でユーザー管理モジュール、React Native でデバイスパネルを実装',
-          '拡張可能で保守容易な構造を実現、ハードウェア連携で体験と売上を向上'
+          'iOS 开发组长',
+          '功能复杂的智能照明控制应用',
+          '高扩展性和易维护的架构设计',
+          '多平台协同开发，Flutter 与 React Native 混合架构',
         ]
       }
     ]
   },
   {
+    key: 'harman',
     company: 'HARMAN',
     logoUrl: 'logos/harman.png',
     productIconUrl: 'logos/harman.product.png',
@@ -97,16 +100,17 @@ const career: CareerItem[] = [
     location: '—',
     projects: [
       {
-        title: 'JBL Headphones アプリ',
+        title: 'HARMAN产品系列App',
         points: [
-          'アーキテクチャ設計、機能実装、App Store 配信と保守',
-          'Firebase データ収集、AWS を用いたメッセージプッシュ、Jenkins でリリースフロー構築',
-          'グローバルユーザー評価 4.5、iF Design 賞 受賞'
+          'iOS 核心开发者',
+          '国际化开发团队协作',
+          '全球用户评价 4.5、iF Design 奖 受奖'
         ]
       }
     ]
   },
   {
+    key: 'tcl',
     company: 'TCL Group',
     logoUrl: 'logos/tcl.png',
     productIconUrl: 'logos/tcl.product.png',
@@ -115,11 +119,11 @@ const career: CareerItem[] = [
     location: '—',
     projects: [
       {
-        title: 'TCL Telcom iOS アプリ',
+        title: 'TCL产品相关App应用',
         points: [
-          '家電製品を管理・設定するスマートホームアプリの開発',
-          'プログラム実装、保守、顧客対応、トラブルシュート',
-          '同社初の IoT アプリを実現し、iOS 開発スキルを確立'
+          '掌握iOS开发技能',
+          '多团队协作',
+          '实现公司首个IoT应用'
         ]
       }
     ]
@@ -135,6 +139,16 @@ const interests: Interest[] = [
 
 export default function App() {
   const { t, locale, setLocale } = useI18n()
+  const getI18nList = (prefix: string): string[] => {
+    const out: string[] = []
+    for (let i = 1; i <= 12; i++) {
+      const key = `${prefix}.${i}`
+      const v = t(key)
+      if (v === key) break
+      out.push(v)
+    }
+    return out
+  }
   return (
     <main className="container">
       {/* Background gallery (decorative) */}
@@ -227,9 +241,9 @@ export default function App() {
                   <div className="timeline-card" key={i}>
                     <div className="timeline-card-grid">
                       <div className="timeline-card-body">
-                        <h3 className="card-title">{p.title}</h3>
+                        <h3 className="card-title">{t(`career.${item.key}.title`)}</h3>
                         <ul>
-                          {p.points.map((pt, j) => (<li key={j}>{pt}</li>))}
+                          {getI18nList(`career.${item.key}.points`).map((pt, j) => (<li key={j}>{pt}</li>))}
                         </ul>
                       </div>
                       <div className="timeline-card-media" aria-hidden={false}>
