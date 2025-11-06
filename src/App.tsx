@@ -272,7 +272,32 @@ export default function App() {
         </ol>
       </section>
 
-      {/* Section 3: 兴趣爱好 */}
+      {/* Section 3: 语言能力 */}
+      <section aria-labelledby="languages-title" className="section" id="languages">
+        <h2 id="languages-title" className="section-heading">{t('languages.title')}</h2>
+        <div className="interests-grid">
+          <article className="interest-card" aria-label={t('languages.zh.title')}>
+            <div className="interest-body">
+              <h3 className="card-title">{t('languages.zh.title')}</h3>
+              <p className="muted">{t('languages.zh.desc')}</p>
+            </div>
+          </article>
+          <article className="interest-card" aria-label={t('languages.ja.title')}>
+            <div className="interest-body">
+              <h3 className="card-title">{t('languages.ja.title')}</h3>
+              <p className="muted">{t('languages.ja.desc')}</p>
+            </div>
+          </article>
+          <article className="interest-card" aria-label={t('languages.en.title')}>
+            <div className="interest-body">
+              <h3 className="card-title">{t('languages.en.title')}</h3>
+              <p className="muted">{t('languages.en.desc')}</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Section 4: 兴趣爱好 */}
       <section aria-labelledby="interests-title" className="section" id="interests">
         <h2 id="interests-title" className="section-heading">{t('interests.title')}</h2>
         <div className="interests-grid">

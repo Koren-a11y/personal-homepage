@@ -118,6 +118,14 @@ const translations: Translations = {
     'interests.surf.desc': '自然と向き合い、機会を読む集中力。',
     'interests.renovation': '住宅リノベ',
     'interests.renovation.desc': '0→1 の手仕事と細部へのこだわり。',
+    // Languages
+    'languages.title': '言語能力',
+    'languages.zh.title': '中国語',
+    'languages.zh.desc': '母語',
+    'languages.ja.title': '日本語',
+    'languages.ja.desc': 'JLPT N2。業務コミュニケーション・日常会話。継続学習中。',
+    'languages.en.title': '英語',
+    'languages.en.desc': 'ビジネスレベル。長期の業務コミュニケーション。',
   },
   zh: {
     'hero.h1': 'iOS / Flutter 开发者 · 产品导向',
@@ -215,6 +223,14 @@ const translations: Translations = {
     'interests.surf.desc': '在自然中训练判断与专注。',
     'interests.renovation': '房屋改造',
     'interests.renovation.desc': '从 0 到 1 的动手能力与对细节的苛求。',
+    // Languages
+    'languages.title': '语言能力',
+    'languages.zh.title': '中文',
+    'languages.zh.desc': '母语',
+    'languages.ja.title': '日语',
+    'languages.ja.desc': 'JLPT N2，工作交流，日常交流。持续学习中。',
+    'languages.en.title': '英文',
+    'languages.en.desc': '商务水平，长期工作交流。',
   },
   en: {
     'hero.h1': 'iOS / Flutter Engineer · Product-minded',
@@ -312,6 +328,14 @@ const translations: Translations = {
     'interests.surf.desc': 'Focus and timing in nature.',
     'interests.renovation': 'Home renovation',
     'interests.renovation.desc': 'Hands-on 0→1 and attention to detail.',
+    // Languages
+    'languages.title': 'Languages',
+    'languages.zh.title': 'Chinese',
+    'languages.zh.desc': 'Native',
+    'languages.ja.title': 'Japanese',
+    'languages.ja.desc': 'JLPT N2. Work and daily communication. Continuing to improve.',
+    'languages.en.title': 'English',
+    'languages.en.desc': 'Business level. Long-term work communication.',
   },
 }
 
